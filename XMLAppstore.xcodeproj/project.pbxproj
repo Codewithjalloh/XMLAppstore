@@ -14,6 +14,7 @@
 		5835850E1D219795006D407A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5835850C1D219795006D407A /* LaunchScreen.storyboard */; };
 		583585161D219A55006D407A /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583585151D219A55006D407A /* AppInfo.swift */; };
 		583585181D219B0C006D407A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583585171D219B0C006D407A /* Foundation.framework */; };
+		5835851A1D219B7A006D407A /* ImagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583585191D219B7A006D407A /* ImagesOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5835850F1D219795006D407A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		583585151D219A55006D407A /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		583585171D219B0C006D407A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		583585191D219B7A006D407A /* ImagesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				583585031D219795006D407A /* AppDelegate.swift */,
 				583585051D219795006D407A /* ViewController.swift */,
 				583585071D219795006D407A /* Main.storyboard */,
+				583585191D219B7A006D407A /* ImagesOperation.swift */,
 				583585151D219A55006D407A /* AppInfo.swift */,
 				5835850A1D219795006D407A /* Assets.xcassets */,
 				5835850C1D219795006D407A /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				583585061D219795006D407A /* ViewController.swift in Sources */,
 				583585041D219795006D407A /* AppDelegate.swift in Sources */,
 				583585161D219A55006D407A /* AppInfo.swift in Sources */,
+				5835851A1D219B7A006D407A /* ImagesOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
