@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, NSURLConnectionDataDelegate, NSXMLParserDelegate, UITableViewDelegate, UITableViewDataSource, ImagesOperationDelegate {
+class ViewController: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate, UITableViewDelegate, UITableViewDataSource, ImagesOperationDelegate {
     
     @IBOutlet weak var myTable: UITableView!
     var listData: NSMutableData!
@@ -29,17 +29,20 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate, NSXMLParser
         apps = NSMutableArray()
     }
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        listData = NSMutableData()
-        print("did receive response")
-    }
     
     func connection(connection: NSURLConnection, didReceiveData data: NSData) {
         listData.appendData(data)
         print("did receive data")
     }
     
-    func connectionDidFinishLoading(connection: NSURLConnection) {
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        listData = NSMutableData()
+        print("did receive response")
+    }
+    
+    
+    
+    func connectionDidFinishLoading(connection: NSURLConnection!) {
         print("did finish loading")
         let parser = NSXMLParser(data: listData)
         parser.delegate = self
@@ -52,9 +55,16 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate, NSXMLParser
             imagesOperation.app = it as! AppInfo
             imagesOperation.delegate = self
             queue.addOperation(imagesOperation)
-            
-        }
+        
     }
+
+}
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         let elementToParse = NSArray(objects: "id", "im:name", "im:image")
@@ -64,6 +74,7 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate, NSXMLParser
         }
         shouldParse = elementToParse.containsObject(elementName)
     }
+    
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if(self.currentApp != nil){
@@ -94,12 +105,16 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate, NSXMLParser
     }
     
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return apps.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = myTable.dequeueReusableHeaderFooterViewWithIdentifier("cell")
+        let cell = myTable.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
         let label: UILabel = cell?.viewWithTag(1111) as! UILabel
         let app = apps.objectAtIndex(indexPath.row) as! AppInfo
         label.text = app.name
@@ -111,17 +126,13 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate, NSXMLParser
         
     }
     
-    
-
-    
-    
     func imagesOperation(imagesOperation:ImagesOperation, app: AppInfo) {
         var visibleCells = myTable.visibleCells
         let firstIndex = myTable.indexPathForCell(visibleCells[0] )?.row
         let lastIndex = myTable.indexPathForCell(visibleCells.last! as UITableViewCell)!.row
         if(app.index >= firstIndex && app.index <= lastIndex) {
             let cell = myTable.cellForRowAtIndexPath(NSIndexPath(forRow: app.index, inSection: 0))
-            let imageView = cell?.viewWithTag(1987) as! UIImageView
+            let imageView = cell?.viewWithTag(2222) as! UIImageView
             imageView.image = app.image
         }
         

@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 
-protocol ImagesOperationDelegate {
+protocol ImagesOperationDelegate{
     func imageOperation(imagesOperation:ImagesOperation, app: AppInfo)
 
 }
