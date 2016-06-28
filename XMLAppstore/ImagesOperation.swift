@@ -29,13 +29,16 @@ class ImagesOperation: NSOperation, NSURLConnectionDelegate {
         self.currentData = NSMutableData()
     }
     
+    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+        self.currentData.appendData(data)
+    }
+    
+    
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         self.currentData = nil
     }
     
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData) {
-        self.currentData.appendData(data)
-    }
+    
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         let image: UIImage? = UIImage(data: self.currentData)
